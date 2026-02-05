@@ -20,6 +20,11 @@ const texts=[
     bgMusic.play ();
     bgMusic.currentTime = 0;
     bgMusic.volume = 1.0;
+    function playKeySound () {
+        const keyAudio = new Audio('key.mp3');
+        keyAudio.volume = 0.1;
+        keyAudio.play();
+    }
     let currentIndex=0;
 const el = document.getElementById("typeWriter");
 const pictureEl = document.getElementById("picture");
@@ -28,10 +33,10 @@ const pictureEl = document.getElementById("picture");
         let i=0;
         function type() {
             if (i<text.length) {
-                keySound.currentTime = 0;
                 keySound.load();
-                keySound.play();
-                keySound.volume = 0.1;
+                if (i % 2 === 0) {
+                    playKeySound();
+                }
                 el.textContent += text.charAt (i);
                 i++;
                 setTimeout(type, 80);
@@ -43,12 +48,14 @@ const pictureEl = document.getElementById("picture");
     }
     function deleteText (callback) {
         let currentText = el.textContent;
-        const intervalId = setInterval(() => {
+        let i = currentText.length;
+        let intervalId = setInterval(() => {
             if (currentText.length > 0) {
                 currentText=currentText.slice(0, -1);
-                keySound.currentTime = 0;
-                keySound.play();
-                keySound.volume = 0.1;
+                i--;
+                if (i % 2 === 0) {
+                    playKeySound();
+                }
                 el.textContent = currentText;
             } else {
                 clearInterval(intervalId);
