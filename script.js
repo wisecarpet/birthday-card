@@ -53,9 +53,9 @@ const pictureEl = document.getElementById("picture");
             if (currentText.length > 0) {
                 currentText=currentText.slice(0, -1);
                 i--;
-                if (i % 2 === 0) {
-                    playKeySound();
-                }
+               // if (i % 2 === 0) {
+                 //   playKeySound();
+                //}//
                 el.textContent = currentText;
             } else {
                 clearInterval(intervalId);
