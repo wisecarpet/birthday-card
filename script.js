@@ -17,8 +17,8 @@ const texts=[
     if (isRunning) return;
     isRunning= true;
     bgMusic.load();
-    bgMusic.play ();
     bgMusic.currentTime = 0;
+    bgMusic.play ();
     bgMusic.volume = 1.0;
     function playKeySound () {
         const keyAudio = new Audio('key.mp3');
@@ -33,7 +33,6 @@ const pictureEl = document.getElementById("picture");
         let i=0;
         function type() {
             if (i<text.length) {
-                keySound.load();
                 if (i % 2 === 0) {
                     playKeySound();
                 }
@@ -53,9 +52,9 @@ const pictureEl = document.getElementById("picture");
             if (currentText.length > 0) {
                 currentText=currentText.slice(0, -1);
                 i--;
-               // if (i % 2 === 0) {
-                 //   playKeySound();
-                //}//
+               if (i % 2 === 0) {
+                    playKeySound();
+                }
                 el.textContent = currentText;
             } else {
                 clearInterval(intervalId);
