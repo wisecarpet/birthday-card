@@ -16,9 +16,9 @@ const texts=[
     function happyBirthday() {
     if (isRunning) return;
     isRunning= true;
-    bgMusic.currentTime = 0;
     bgMusic.load();
     bgMusic.play ();
+    bgMusic.currentTime = 0;
     bgMusic.volume = 1.0;
     let currentIndex=0;
 const el = document.getElementById("typeWriter");
