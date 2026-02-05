@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
     <head>
-        <meta chatset="UTF-8>">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Happy Birthday!</title>
             <link rel="stylesheet" href="style.css">
@@ -9,13 +9,23 @@
     <body>
         <div class="page">
         <div class="card">
-                <div class="text-box">С днем Рождения!</div>
                 <div class="picture-wrapper">
-                <div class="picture"></div>
+                    <div class="text-box">С днем Рождения!</div>
+                <div class="picture" id="picture">
+                    <div class="text-layer">
+                     <div id="typeWriter"></div>
+                    </div>
+                    <audio id="bgMusic" preload="auto">
+                        <source src="Elise.mp3" type="audio/mpeg">
+                    </audio>
+                    <audio id="keySound" preload="auto">
+                        <source src="key.mp3" type="audio/mpeg">
+                    </audio>
                 </div>
-                <button onclick="happyBirthday()" class="change-btn">Поздравляю Вас!</button>
+                     <button onclick="happyBirthday()" class="change-btn">Поздравляю Вас!</button>
+                </div>
         </div>
         </div>
-        <script scr="c. > MyCodeWitcery > Code_Drafts > birthday-card > script.js"></script>
+        <script src="script.js"></script>
     </body>
 </html>

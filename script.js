@@ -1,43 +1,65 @@
+const bgMusic = document.getElementById("bgMusic");
+const keySound = document.getElementById("keySound");
 const texts=[
-        "Дорогая Ирина!"<br>"В этот замечательный день"<br>"Хочется Вам пожелать...",
-        "Крепкого здоровья,"<br>"Прекрасного настроения"<br>"Интереса и любопытства!",
-        "Пусть Ваш взгляд будет все тем же,"<br>"С мудрым юмором и живой искрой!",
-        "Пусть о Вас всегда помнят те, кому Вы рады,"<br>"И удачно забывают те, с кем Вам не по пути!",
-    ]
+        "Дорогая Ирина!\nВ этот замечательный день\nХочется Вам пожелать...",
+        "Крепкого здоровья,\nПрекрасного настроения\nИнтереса и любопытства!",
+        "Пусть Ваш взгляд будет все\nтем же, с мудрым юмором\n и живой искрой!",
+        "Пусть о Вас всегда помнят\n те, кому Вы рады, и удачно\n забывают те, с кем\nВам не по пути!"
+    ];
+    const images=[
+        "Klimt1.jpg",
+        "Klimt2.jpg",
+        "Klimt3.jpg",
+        "Klimt4.jpg"
+    ];
     let isRunning = false;
     function happyBirthday() {
     if (isRunning) return;
     isRunning= true;
+    bgMusic.currentTime = 0;
+    bgMusic.load();
+    bgMusic.play ();
+    bgMusic.volume = 1.0;
     let currentIndex=0;
+const el = document.getElementById("typeWriter");
+const pictureEl = document.getElementById("picture");
     function typeWriter(text, callback) {
-        const el=document.getElementById ('typeWriter');
-        el.textcontent="";
-        i=0;
+        el.textContent="";
+        let i=0;
         function type() {
-            if (i<Text.length) {
-                el.textContent=text.charAt (i),
-                i++,
-                setTimeout(type, 80)
+            if (i<text.length) {
+                keySound.currentTime = 0;
+                keySound.load();
+                keySound.play();
+                keySound.volume = 0.1;
+                el.textContent += text.charAt (i);
+                i++;
+                setTimeout(type, 80);
             } else {
-                setTimeout(()=> callback(), 2000)
+                setTimeout(() => callback(), 2000);
             }
         }
         type();
     }
     function deleteText (callback) {
-        const el= document.getElementById("typeWriter");
         let currentText = el.textContent;
-        const intervalId = setInterval(()=>{
-            if (currentText.lenght > 0) {
-                currentText=currentText.slice(0, -1)
+        const intervalId = setInterval(() => {
+            if (currentText.length > 0) {
+                currentText=currentText.slice(0, -1);
+                keySound.currentTime = 0;
+                keySound.play();
+                keySound.volume = 0.1;
+                el.textContent = currentText;
             } else {
-                clearInterval(intervalId),
-                setTimeout(callback, 2000)
+                clearInterval(intervalId);
+                setTimeout(callback, 200);
             }
         }, 50);
     }
     function showNextPhrase() {
-        if (currentIndex<TextDecoderStream.length) {
+        if (currentIndex<texts.length) {
+            /*меняем картинку*/
+            pictureEl.style.backgroundImage = `url('${images[currentIndex]}')`;
             const text=texts[currentIndex];
             typeWriter(text, () => {
                 deleteText(() => {
@@ -47,7 +69,10 @@ const texts=[
             });
         } else {
             isRunning= false;
+            pictureEl.style.backgroundImage = `url('startBackground.jpg')`;
         }
     }
-    showNextPhrase()
-}
+    setTimeout (() => {
+        showNextPhrase();
+}, 170);
+    }
