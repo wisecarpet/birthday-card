@@ -21,6 +21,7 @@ const texts=[
     bgMusic.play ();
     bgMusic.volume = 1.0;
     function playKeySound () {
+        console.log("пытались воспроизвести звук");
         const keyAudio = new Audio('key.mp3');
         keyAudio.volume = 0.1;
         keyAudio.play();
